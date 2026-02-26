@@ -2,7 +2,7 @@ public class TourPackage extends TravelService implements Reservable {
     private double price;
     private int availableSeats;
 
-    // Constructor using 'super'
+   
     public TourPackage(String serviceId, String destination, double price, int availableSeats) {
         super(serviceId, destination);
         this.price = price;
@@ -13,13 +13,13 @@ public class TourPackage extends TravelService implements Reservable {
         return price; 
     }
 
-    // Overriding abstract method from TravelService parent class
+   
     @Override
     public void showServiceInfo() {
         System.out.println("Tour to " + super.getDestination() + " | Price: $" + this.price);
     }
 
-    // Implementing Reservable interface methods
+    
     @Override
     public boolean checkAvailability() {
         return availableSeats > 0;
