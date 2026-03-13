@@ -3,8 +3,11 @@ public class MpesaPayment implements Payment {
     private String phoneNumber;
 
     public MpesaPayment(String transactionId, String phoneNumber) throws Exception {
+      
         InputValidator.checkNotEmpty(transactionId, "Transaction ID");
-        InputValidator.checkNotEmpty(phoneNumber, "Phone number");
+        
+        
+        InputValidator.checkPhoneNumber(phoneNumber);
         
         this.transactionId = transactionId;
         this.phoneNumber = phoneNumber;
