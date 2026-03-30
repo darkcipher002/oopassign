@@ -3,10 +3,7 @@ public class MpesaPayment implements Payment {
     private String phoneNumber;
 
     public MpesaPayment(String transactionId, String phoneNumber) throws Exception {
-      
         InputValidator.checkNotEmpty(transactionId, "Transaction ID");
-        
-        
         InputValidator.checkPhoneNumber(phoneNumber);
         
         this.transactionId = transactionId;
@@ -17,15 +14,14 @@ public class MpesaPayment implements Payment {
     public void processPayment(double amount) {
         try {
             InputValidator.checkPositive(amount, "Amount");
-            System.out.println("Processing M-Pesa payment of $" + amount);
-            System.out.println("Phone: " + this.phoneNumber);
+            System.out.println("Processing M-Pesa payment of KSH" + amount + " via " + this.phoneNumber);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Payment Error: " + e.getMessage());
         }
     }
 
     @Override
     public void generateReceipt() {
-        System.out.println("Receipt - TXN: " + this.transactionId);
+        System.out.println("M-Pesa Receipt - TXN: " + this.transactionId);
     }
 }

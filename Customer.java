@@ -1,27 +1,26 @@
 public class Customer extends User {
-    
     private String passportNumber;
 
-    // Constructor with throws (tells Java we might throw an exception)
     public Customer(String userId, String name, String passportNumber) throws Exception {
         super(userId, name);
-        
-        // Validate passport
         InputValidator.checkNotEmpty(passportNumber, "Passport number");
         this.passportNumber = passportNumber;
     }
 
-    public String getPassportNumber() { 
-        return passportNumber; 
+    public static Customer fromFileString(String line) throws Exception {
+        String[] parts = line.split(",");
+        return new Customer(parts[1], parts[2], parts[3]);
     }
-    
-    public void setPassportNumber(String passportNumber) throws Exception {
-        InputValidator.checkNotEmpty(passportNumber, "Passport number");
-        this.passportNumber = passportNumber;
+
+    @Override
+    public String toString() {
+        return "CUSTOMER," + getUserId() + "," + getName() + "," + this.passportNumber;
     }
 
     @Override
     public void displayDetails() {
-        System.out.println("Customer Name: " + super.getName() + " | Passport: " + this.passportNumber);
+        System.out.println("Customer Name: " + getName());
+        System.out.println("User ID: " + getUserId());
+        System.out.println("Passport: " + this.passportNumber);
     }
 }
